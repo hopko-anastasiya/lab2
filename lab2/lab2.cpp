@@ -8,7 +8,6 @@
 #include <execution>
 #include <thread>
 #include <algorithm>
-#include <cmath>
 #include <random>
 #include <future>
 #include <iomanip>
@@ -129,6 +128,7 @@ void run_experiments(size_t n) {
     K_values.push_back((int)hardware_concurrency * 2);
     K_values.push_back((int)hardware_concurrency * 4);
     K_values.push_back(64);
+    K_values.push_back(100);
 
     std::sort(K_values.begin(), K_values.end());
     K_values.erase(std::unique(K_values.begin(), K_values.end()), K_values.end());
@@ -153,8 +153,7 @@ void run_experiments(size_t n) {
     }
 
     std::cout << "Best speed (" << best_time << " ms) achieved with K = " << best_K << "\n";
-    std::cout << "Ratio of K_best to CPU threads (" << hardware_concurrency << "): "
-        << (DurationMs)best_K / hardware_concurrency << "\n";
+    std::cout << "Ratio of K_best to CPU threads (" << hardware_concurrency << "): " << (DurationMs)best_K / hardware_concurrency << "\n";
     std::cout << "---------------------------------------------------------\n";
 }
 
